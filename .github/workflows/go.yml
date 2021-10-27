@@ -68,7 +68,7 @@ jobs:
         cat .docker/Dockerfile
 
         registry=registry.cn-beijing.aliyuncs.com
-        imageName="${registry}/gitlab-booster/gitlab-booster:${GITHUB_SHA}"
+        imageName="${registry}/fundwit/gitlab-booster:${GITHUB_SHA}"
         echo "image name: $imageName"
         echo "IMAGE_NAME=${imageName}" >> $GITHUB_ENV
 
