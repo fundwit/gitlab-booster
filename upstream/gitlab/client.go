@@ -1,6 +1,7 @@
 package gitlab
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"gitlab-booster/config"
@@ -28,7 +29,10 @@ type Client struct {
 
 // NewClient 创建一个 gitlab Client 实例
 func NewClient() *Client {
-	return &Client{endpoint: config.GetGitlabEndpoint(), httpClient: &http.Client{}, validate: validator.New()}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	return &Client{endpoint: config.GetGitlabEndpoint(), httpClient: &http.Client{Transport: tr}, validate: validator.New()}
 }
 
 type grantTokenReq struct {
